@@ -1,0 +1,236 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import RNPickerSelect from 'react-native-picker-select';
+const NewStudies = () => {
+  const navigation = useNavigation(); 
+   const [industry, setIndustry] = useState([
+    { id: 1, name: 'Industry 1' },
+    { id: 2, name: 'Industry 2' },
+    { id: 3, name: 'Industry 3' },
+  ]);
+  const [selectedIndustry, setSelectedIndustry] = useState(null);
+
+  // Transform the industry state to match the expected format
+  const industryItems = industry.map(item => ({
+    label: item.name,
+    value: String(item.id),
+  }));
+
+  return (
+    
+      <View style={styles.container}>
+        <View style={styles.inputRow1}>
+          <Text style={styles.label}>Type of Industry</Text>
+          <View style={{backgroundColor:"white",width:260,borderWidth:0.5}}><RNPickerSelect
+  placeholder={{
+    label: 'Select An Industry',
+    value: null,
+    color:"black"
+  }}
+  items={industryItems}
+  onValueChange={(value) => setSelectedIndustry(value)}
+  value={selectedIndustry}
+  style={{
+    inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      placeholderTextColor:"black"
+    },
+    inputAndroid: {
+      fontSize: 16,
+      paddingHorizontal: 80,
+      paddingVertical: 8,
+      borderWidth: 0.5,
+      borderColor: 'gray',
+      borderRadius: 8,
+      color: 'black',
+      placeholderTextColor:"black"
+    },
+  }}
+/>
+</View>
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>Contact Name:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Contact Name"
+            placeholderTextColor="#888"
+            // onChangeText={(text) => handleFieldChange('contactName', text)}
+          />
+        </View>
+        <View style={styles.inputRow}>
+          <Text style={styles.label}>Company Name:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Company Name"
+            placeholderTextColor="#888"
+            // onChangeText={(text) => handleFieldChange('companyName', text)}
+          />
+        </View>
+        <View style={styles.inputRow}>
+                            <Text style={styles.label}>Phone:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Phone"
+                                placeholderTextColor="#888"
+                                // onChangeText={(text) => handleFieldChange('phone', text)}
+                            />
+                        </View>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.label}>Whatsapp no:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Watsapp no"
+                                // placeholderTextColor="#888"
+                                // onChangeText={(text) => handleFieldChange('watsappno', text)}
+                            />
+                        </View>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.label}>E-mail:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter E-mail"
+                                placeholderTextColor="#888"
+                                // onChangeText={(text) => handleFieldChange('email', text)}
+                            />
+                        </View>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.label}>Address:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Address"
+                                placeholderTextColor="#888"
+                                // onChangeText={(text) => handleFieldChange('address', text)}
+                            />
+                        </View>
+                        {/* <View style={styles.inputRow}>
+                            <Text style={styles.label}>Job Position:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Job Position"
+                                placeholderTextColor="#888"
+                                // onChangeText={(text) => handleFieldChange('jobPosition', text)}
+                            />
+                        </View> */}
+                        {/* <View style={styles.inputRow}>
+                            <Text style={styles.label}>Remarks:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Remarks ..."
+                                placeholderTextColor="#888"
+                                multiline
+                                numberOfLines={4}
+                                // onChangeText={(text) => handleFieldChange('remarks', text)}
+                            />
+                        </View> */}
+                        <View style={styles.inputRow}>
+                            <Text style={styles.label}>Description:</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter Description ..."
+                                placeholderTextColor="#888"
+                                multiline
+                                numberOfLines={4}
+                                // onChangeText={(text) => handleFieldChange('description', text)}
+                            />
+                        </View><Button title="Done" onPress={() => navigation.navigate("page2")} />
+                     </View>
+    
+  );
+};
+
+export default NewStudies;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection:"coloumn",
+    padding:20,
+    backgroundColor: '#fff',
+  },
+  input: {
+    flex: 2,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 0.5,
+   
+  },
+  inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  label: {
+    flex: 1,
+    textAlign: 'left'
+  },
+  inputRow1: {
+    flexDirection:'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  }
+});
+
+{
+  "expo": {
+    "name": "shansapp",
+    "slug": "shansapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "flex": 1,
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need your location for..."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.shansapp.android",
+      "permissions": ["ACCESS_FINE_LOCATION"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "37ca30c9-bf48-4512-8c08-bc4a09262567"
+      }
+    },
+    "plugins": [
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
+      ],
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "CUSTOM: Allow $(PRODUCT_NAME) to access the microphone",
+          "speechRecognitionPermission": "CUSTOM: Allow $(PRODUCT_NAME) to securely recognize user speech"
+        }
+      ]
+    ]
+  }
+}
